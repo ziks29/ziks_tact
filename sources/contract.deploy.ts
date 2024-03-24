@@ -1,15 +1,15 @@
 import * as fs from "fs";
 import * as path from "path";
 import { Address, contractAddress } from "@ton/core";
-import { SampleTactContract } from "./output/sample_SampleTactContract";
+import { Proxy } from "./output/sample_Proxy";
 import { prepareTactDeployment } from "@tact-lang/deployer";
 
 (async () => {
     // Parameters
     let testnet = true;
-    let packageName = "sample_SampleTactContract.pkg";
-    let owner = Address.parse("kQBM7QssP28PhrctDOyd47_zpFfDiQvv5V9iXizNopb1d2LB");
-    let init = await SampleTactContract.init(owner);
+    let packageName = "sample_Proxy.pkg";
+    let owner = Address.parse("EQAbfv7aLjK-9MWyWmlJ4Rlt2cvxqGM5zMsqiuaiCYvTSthB");
+    let init = await Proxy.init(owner);
 
     // Load required data
     let address = contractAddress(0, init);

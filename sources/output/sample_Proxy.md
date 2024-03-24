@@ -1,9 +1,9 @@
 # TACT Compilation Report
-Contract: SampleTactContract
-BOC Size: 849 bytes
+Contract: Proxy
+BOC Size: 1557 bytes
 
 # Types
-Total Types: 7
+Total Types: 11
 
 ## StateInit
 TLB: `_ code:^cell data:^cell = StateInit`
@@ -17,6 +17,14 @@ Signature: `Context{bounced:bool,sender:address,value:int257,raw:^slice}`
 TLB: `_ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters`
 Signature: `SendParameters{bounce:bool,to:address,value:int257,mode:int257,body:Maybe ^cell,code:Maybe ^cell,data:Maybe ^cell}`
 
+## ChangeOwner
+TLB: `change_owner#819dbe99 queryId:uint64 newOwner:address = ChangeOwner`
+Signature: `ChangeOwner{queryId:uint64,newOwner:address}`
+
+## ChangeOwnerOk
+TLB: `change_owner_ok#327b2b4a queryId:uint64 newOwner:address = ChangeOwnerOk`
+Signature: `ChangeOwnerOk{queryId:uint64,newOwner:address}`
+
 ## Deploy
 TLB: `deploy#946a98b6 queryId:uint64 = Deploy`
 Signature: `Deploy{queryId:uint64}`
@@ -29,14 +37,26 @@ Signature: `DeployOk{queryId:uint64}`
 TLB: `factory_deploy#6d0ff13b queryId:uint64 cashback:address = FactoryDeploy`
 Signature: `FactoryDeploy{queryId:uint64,cashback:address}`
 
-## Add
-TLB: `add#87d43ac2 amount:uint32 = Add`
-Signature: `Add{amount:uint32}`
+## ProxyMessage
+TLB: `proxy_message#8da0f2c7 str:^string to:address = ProxyMessage`
+Signature: `ProxyMessage{str:^string,to:address}`
+
+## ChangeExampleOwner
+TLB: `change_example_owner#e260297a newOwner:address = ChangeExampleOwner`
+Signature: `ChangeExampleOwner{newOwner:address}`
+
+## LastMessage
+TLB: `_ lastMessage:Maybe ^string lastSender:Maybe address lastReciver:Maybe address = LastMessage`
+Signature: `LastMessage{lastMessage:Maybe ^string,lastSender:Maybe address,lastReciver:Maybe address}`
 
 # Get Methods
-Total Get Methods: 1
+Total Get Methods: 3
 
-## counter
+## owner
+
+## get_count
+
+## get_last
 
 # Error Codes
 2: Stack undeflow
@@ -63,4 +83,4 @@ Total Get Methods: 1
 135: Code of a contract was not found
 136: Invalid address
 137: Masterchain support is not enabled for this contract
-4429: Invalid sender
+27831: Only owner can call this function
